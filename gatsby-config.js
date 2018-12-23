@@ -10,7 +10,7 @@ module.exports = {
     'MarkdownRemark.frontmatter.author': 'AuthorYaml',
   },
   plugins: [
-    'gatsby-plugin-sharp',
+    'gatsby-plugin-sharp', 'gatsby-plugin-sitemap',
     {
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -75,6 +75,6 @@ module.exports = {
           gtmAuth: "YOUR_GOOGLE_TAGMANAGER_ENVIROMENT_AUTH_STRING",
           gtmPreview: "YOUR_GOOGLE_TAGMANAGER_ENVIROMENT_PREVIEW_NAME",
         },
-      }
+    },
   ],
 };
