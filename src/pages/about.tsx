@@ -38,7 +38,7 @@ const About: React.FunctionComponent = () => (
           <PostFullContent className="post-full-content">
             <div className="post-content">
               <p>
-               แบร่
+               Boo
               </p>
             </div>
           </PostFullContent>

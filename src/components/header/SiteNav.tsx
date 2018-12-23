@@ -165,7 +165,7 @@ class SiteNav extends React.Component<SiteNavProps, SiteNaveState> {
                 <Facebook />
               </a>
             )}
-            {config.twitter && (
+            {/* {config.twitter && (
               <a
                 className={`${SocialLink}`}
                 href={config.twitter}
@@ -175,7 +175,7 @@ class SiteNav extends React.Component<SiteNavProps, SiteNaveState> {
               >
                 <Twitter />
               </a>
-            )}
+            )} */}
           </SocialLinks>
           {config.showSubscribe && (
             <SubscribeButton onClick={this.openModal}>Subscribe</SubscribeButton>
