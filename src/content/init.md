@@ -3,8 +3,8 @@ layout: post
 title: "Init"
 author: jempurich
 tags: ["Poetry"]
-image: img/welcome-to-ghost.jpg
-date: "2018-05-06T23:46:37.121Z"
+image: img/init-cover.jpg
+date: "2019-01-01T23:46:37.121Z"
 draft: false
 ---
 
