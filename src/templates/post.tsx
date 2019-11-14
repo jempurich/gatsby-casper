@@ -64,6 +64,7 @@ const PostFullMeta = styled.section`
   font-size: 1.4rem;
   font-weight: 600;
   text-transform: uppercase;
+  margin-bottom: 2em;
 
   @media (max-width: 500px) {
     font-size: 1.2rem;
