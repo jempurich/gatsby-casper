@@ -3,7 +3,7 @@ layout: post
 title: "Init"
 author: jempurich
 tags: ["Poetry"]
-image: img/init-cover.jpg
+image: img/OI000146.JPG
 date: "2019-01-01T23:46:37.121Z"
 draft: false
 ---
