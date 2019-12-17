@@ -3,8 +3,8 @@ import Img from 'gatsby-image';
 import * as _ from 'lodash';
 import { setLightness } from 'polished';
 import * as React from 'react';
-import styled from '@emotion/styled'
-import { css } from 'emotion'
+import styled from '@emotion/styled';
+import { css } from '@emotion/core';
 import { Helmet } from 'react-helmet';
 
 import AuthorCard from '../components/AuthorCard';
@@ -15,7 +15,7 @@ import PostContent from '../components/PostContent';
 import PostFullFooter from '../components/PostFullFooter';
 import PostFullFooterRight from '../components/PostFullFooterRight';
 import ReadNextCard from '../components/ReadNextCard';
-import Subscribe from '../components/subsribe/Subscribe';
+import Subscribe from '../components/subscribe/Subscribe';
 import Wrapper from '../components/Wrapper';
 import IndexLayout from '../layouts';
 import { colors } from '../styles/colors';
@@ -24,7 +24,7 @@ import config from '../website-config';
 
 const PostTemplate = css`
   .site-main {
-    background #fff;
+    background: #fff;
     padding-bottom: 4vw;
   }
 `;
@@ -64,7 +64,6 @@ const PostFullMeta = styled.section`
   font-size: 1.4rem;
   font-weight: 600;
   text-transform: uppercase;
-  margin-bottom: 2em;
 
   @media (max-width: 500px) {
     font-size: 1.2rem;
@@ -147,18 +146,18 @@ interface PageTemplateProps {
           id: string;
           bio: string;
           avatar: {
-            children: {
+            children: Array<{
               fixed: {
                 src: string;
               };
-            }[];
+            }>;
           };
         };
       };
     };
     relatedPosts: {
       totalCount: number;
-      edges: {
+      edges: Array<{
         node: {
           timeToRead: number;
           frontmatter: {
@@ -168,7 +167,7 @@ interface PageTemplateProps {
             slug: string;
           };
         };
-      }[];
+      }>;
     };
   };
   pageContext: {
@@ -191,26 +190,27 @@ export interface PageContext {
     };
     title: string;
     date: string;
+    draft?: boolean;
     tags: string[];
     author: {
       id: string;
       bio: string;
       avatar: {
-        children: {
+        children: Array<{
           fixed: {
             src: string;
           };
-        }[];
+        }>;
       };
     };
   };
 }
 
-const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
+const PageTemplate: React.FC<PageTemplateProps> = props => {
   const post = props.data.markdownRemark;
   let width = '';
   let height = '';
-  if (post.frontmatter.image) {
+  if (post.frontmatter.image && post.frontmatter.image.childImageSharp) {
     width = post.frontmatter.image.childImageSharp.fluid.sizes.split(', ')[1].split('px')[0];
     height = String(Number(width) / post.frontmatter.image.childImageSharp.fluid.aspectRatio);
   }
@@ -227,8 +227,8 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
         <meta property="og:title" content={post.frontmatter.title} />
         <meta property="og:description" content={post.excerpt} />
         <meta property="og:url" content={config.siteUrl + props.pathContext.slug} />
-        {post.frontmatter.image && (
-          <meta property="og:image" content={post.frontmatter.image.childImageSharp.fluid.src} />
+        {(post.frontmatter.image && post.frontmatter.image.childImageSharp) && (
+          <meta property="og:image" content={`${config.siteUrl}${post.frontmatter.image.childImageSharp.fluid.src}`} />
         )}
         <meta property="article:published_time" content={post.frontmatter.date} />
         {/* not sure if modified time possible */}
@@ -237,37 +237,37 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
           <meta property="article:tag" content={post.frontmatter.tags[0]} />
         )}
 
-        <meta property="article:publisher" content={config.facebook} />
-        <meta property="article:author" content={config.facebook} />
+        {config.facebook && <meta property="article:publisher" content={config.facebook} />}
+        {config.facebook && <meta property="article:author" content={config.facebook} />}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={post.frontmatter.title} />
         <meta name="twitter:description" content={post.excerpt} />
         <meta name="twitter:url" content={config.siteUrl + props.pathContext.slug} />
-        {post.frontmatter.image && (
-          <meta name="twitter:image" content={post.frontmatter.image.childImageSharp.fluid.src} />
+        {(post.frontmatter.image && post.frontmatter.image.childImageSharp) && (
+          <meta name="twitter:image" content={`${config.siteUrl}${post.frontmatter.image.childImageSharp.fluid.src}`} />
         )}
         <meta name="twitter:label1" content="Written by" />
         <meta name="twitter:data1" content={post.frontmatter.author.id} />
         <meta name="twitter:label2" content="Filed under" />
         {post.frontmatter.tags && <meta name="twitter:data2" content={post.frontmatter.tags[0]} />}
-        <meta name="twitter:site" content={`@${config.twitter.split('https://twitter.com/')[0]}`} />
-        <meta
+        {config.twitter && <meta name="twitter:site" content={`@${config.twitter.split('https://twitter.com/')[1]}`} />}
+        {config.twitter && <meta
           name="twitter:creator"
-          content={`@${config.twitter.split('https://twitter.com/')[0]}`}
-        />
+          content={`@${config.twitter.split('https://twitter.com/')[1]}`}
+        />}
         {width && <meta property="og:image:width" content={width} />}
         {height && <meta property="og:image:height" content={height} />}
       </Helmet>
-      <Wrapper className={`${PostTemplate}`}>
-        <header className={`${SiteHeader} ${outer}`}>
-          <div className={`${inner}`}>
+      <Wrapper css={PostTemplate}>
+        <header css={[outer, SiteHeader]}>
+          <div css={inner}>
             <SiteNav />
           </div>
         </header>
-        <main id="site-main" className={`site-main ${SiteMain} ${outer}`}>
-          <div className={`${inner}`}>
+        <main id="site-main" className="site-main" css={[SiteMain, outer]}>
+          <div css={inner}>
             {/* TODO: no-image css tag? */}
-            <article className={`${PostFull} ${!post.frontmatter.image ? NoImage : ''}`}>
+            <article css={[PostFull, !post.frontmatter.image && NoImage]}>
               <PostFullHeader>
                 <PostFullMeta>
                   <PostFullMetaDate dateTime={post.frontmatter.date}>
@@ -281,12 +281,12 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
                           {post.frontmatter.tags[0]}
                         </Link>
                       </>
-                    )}
+                  )}
                 </PostFullMeta>
                 <PostFullTitle>{post.frontmatter.title}</PostFullTitle>
               </PostFullHeader>
 
-              {post.frontmatter.image && (
+              {(post.frontmatter.image && post.frontmatter.image.childImageSharp) && (
                 <PostFullImage>
                   <Img
                     style={{ height: '100%' }}
@@ -308,8 +308,8 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
         </main>
 
         {/* Links to Previous/Next posts */}
-        <aside className={`read-next ${outer}`}>
-          <div className={`${inner}`}>
+        <aside className="read-next" css={outer}>
+          <div css={inner}>
             <ReadNextFeed>
               {props.data.relatedPosts && (
                 <ReadNextCard tags={post.frontmatter.tags} relatedPosts={props.data.relatedPosts} />
@@ -360,7 +360,7 @@ export const query = graphql`
           avatar {
             children {
               ... on ImageSharp {
-                fixed(quality: 100) {
+                fixed(quality: 90) {
                   ...GatsbyImageSharpFixed
                 }
               }

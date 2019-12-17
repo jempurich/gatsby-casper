@@ -1,6 +1,6 @@
 import { graphql } from 'gatsby';
 import * as React from 'react';
-import { css } from 'emotion'
+import { css } from '@emotion/core';
 import Helmet from 'react-helmet';
 
 import Footer from '../components/Footer';
@@ -9,6 +9,8 @@ import PostCard from '../components/PostCard';
 import Wrapper from '../components/Wrapper';
 import IndexLayout from '../layouts';
 import config from '../website-config';
+import Pagination from '../components/Pagination';
+
 import {
   inner,
   outer,
@@ -20,51 +22,55 @@ import {
   SiteMain,
   SiteTitle,
 } from '../styles/shared';
-import { PageContext } from '../templates/post';
+import { PageContext } from './post';
 
 const HomePosts = css`
   @media (min-width: 795px) {
-    .post-card:nth-child(6n + 1):not(.no-image) {
+    .post-card:nth-of-type(6n + 1):not(.no-image) {
       flex: 1 1 100%;
       flex-direction: row;
     }
 
-    .post-card:nth-child(6n + 1):not(.no-image) .post-card-image-link {
+    .post-card:nth-of-type(6n + 1):not(.no-image) .post-card-image-link {
       position: relative;
       flex: 1 1 auto;
       border-radius: 5px 0 0 5px;
     }
 
-    .post-card:nth-child(6n + 1):not(.no-image) .post-card-image {
+    .post-card:nth-of-type(6n + 1):not(.no-image) .post-card-image {
       position: absolute;
       width: 100%;
       height: 100%;
     }
 
-    .post-card:nth-child(6n + 1):not(.no-image) .post-card-content {
+    .post-card:nth-of-type(6n + 1):not(.no-image) .post-card-content {
       flex: 0 1 357px;
     }
 
-    .post-card:nth-child(6n + 1):not(.no-image) h2 {
+    .post-card:nth-of-type(6n + 1):not(.no-image) h2 {
       font-size: 2.6rem;
     }
 
-    .post-card:nth-child(6n + 1):not(.no-image) p {
+    .post-card:nth-of-type(6n + 1):not(.no-image) p {
       font-size: 1.8rem;
       line-height: 1.55em;
     }
 
-    .post-card:nth-child(6n + 1):not(.no-image) .post-card-content-link {
+    .post-card:nth-of-type(6n + 1):not(.no-image) .post-card-content-link {
       padding: 30px 40px 0;
     }
 
-    .post-card:nth-child(6n + 1):not(.no-image) .post-card-meta {
+    .post-card:nth-of-type(6n + 1):not(.no-image) .post-card-meta {
       padding: 0 40px 30px;
     }
   }
 `;
 
 export interface IndexProps {
+  pageContext: {
+    currentPage: number;
+    numPages: number;
+  };
   data: {
     logo: {
       childImageSharp: {
@@ -77,18 +83,19 @@ export interface IndexProps {
       };
     };
     allMarkdownRemark: {
-      edges: {
+      edges: Array<{
         node: PageContext;
-      }[];
+      }>;
     };
   };
 }
 
-const IndexPage: React.FunctionComponent<IndexProps> = props => {
+const IndexPage: React.FC<IndexProps> = props => {
   const width = props.data.header.childImageSharp.fluid.sizes.split(', ')[1].split('px')[0];
   const height = String(Number(width) / props.data.header.childImageSharp.fluid.aspectRatio);
+
   return (
-    <IndexLayout className={`${HomePosts}`}>
+    <IndexLayout css={HomePosts}>
       <Helmet>
         <html lang={config.lang} />
         <title>{config.title}</title>
@@ -98,28 +105,37 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
         <meta property="og:title" content={config.title} />
         <meta property="og:description" content={config.description} />
         <meta property="og:url" content={config.siteUrl} />
-        <meta property="og:image" content={props.data.header.childImageSharp.fluid.src} />
-        <meta property="article:publisher" content={config.facebook} />
+        <meta
+          property="og:image"
+          content={`${config.siteUrl}${props.data.header.childImageSharp.fluid.src}`}
+        />
+        {config.facebook && <meta property="article:publisher" content={config.facebook} />}
+        {config.googleSiteVerification && <meta name="google-site-verification" content={config.googleSiteVerification} />}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={config.title} />
         <meta name="twitter:description" content={config.description} />
         <meta name="twitter:url" content={config.siteUrl} />
         <meta
           name="twitter:image"
-          content={props.data.header.childImageSharp.fluid.src}
+          content={`${config.siteUrl}${props.data.header.childImageSharp.fluid.src}`}
         />
-        <meta name="twitter:site" content={`@${config.twitter.split('https://twitter.com/')[0]}`} />
+        {config.twitter && (
+          <meta
+            name="twitter:site"
+            content={`@${config.twitter.split('https://twitter.com/')[1]}`}
+          />
+        )}
         <meta property="og:image:width" content={width} />
         <meta property="og:image:height" content={height} />
       </Helmet>
       <Wrapper>
         <header
-          className={`${SiteHeader} ${outer}`}
+          css={[outer, SiteHeader]}
           style={{
             backgroundImage: `url('${props.data.header.childImageSharp.fluid.src}')`,
           }}
         >
-          <div className={`${inner}`}>
+          <div css={inner}>
             <SiteHeaderContent>
               <SiteTitle>
                 {props.data.logo ? (
@@ -134,20 +150,26 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
               </SiteTitle>
               <SiteDescription>{config.description}</SiteDescription>
             </SiteHeaderContent>
-            <SiteNav isHome={true} />
+            <SiteNav isHome />
           </div>
         </header>
-        <main id="site-main" className={`${SiteMain} ${outer}`}>
-          <div className={`${inner}`}>
-            <div className={`${PostFeed} ${PostFeedRaise}`}>
+        <main id="site-main" css={[SiteMain, outer]}>
+          <div css={inner}>
+            <div css={[PostFeed, PostFeedRaise]}>
               {props.data.allMarkdownRemark.edges.map(post => {
-                return <PostCard key={post.node.fields.slug} post={post.node} />;
+                // filter out drafts in production
+                return (
+                  (post.node.frontmatter.draft !== true ||
+                    process.env.NODE_ENV !== 'production') && (
+                    <PostCard key={post.node.fields.slug} post={post.node} />
+                  )
+                );
               })}
             </div>
           </div>
         </main>
         {props.children}
-
+        <Pagination currentPage={props.pageContext.currentPage} numPages={props.pageContext.numPages} />
         <Footer />
       </Wrapper>
     </IndexLayout>
@@ -157,7 +179,7 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
 export default IndexPage;
 
 export const pageQuery = graphql`
-  query {
+  query blogPageQuery($skip: Int!, $limit: Int!) {
     logo: file(relativePath: { eq: "img/ghost-logo.png" }) {
       childImageSharp {
         # Specify the image processing specifications right in the query.
@@ -176,7 +198,12 @@ export const pageQuery = graphql`
         }
       }
     }
-    allMarkdownRemark(limit: 1000, sort: { fields: [frontmatter___date], order: DESC }) {
+    allMarkdownRemark(
+      sort: { fields: [frontmatter___date], order: DESC },
+      filter: { frontmatter: { draft: { ne: true } } },
+      limit: $limit,
+      skip: $skip
+    ) {
       edges {
         node {
           timeToRead
@@ -184,6 +211,7 @@ export const pageQuery = graphql`
             title
             date
             tags
+            draft
             image {
               childImageSharp {
                 fluid(maxWidth: 3720) {
@@ -197,7 +225,7 @@ export const pageQuery = graphql`
               avatar {
                 children {
                   ... on ImageSharp {
-                    fixed(quality: 100) {
+                    fixed(quality: 90) {
                       src
                     }
                   }
