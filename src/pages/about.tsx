@@ -36,40 +36,33 @@ const About: React.FC = () => (
 
           <PostFullContent className="post-full-content">
             <div className="post-content">
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc commodo finibus leo,
-                non tempus magna vehicula ac. Maecenas mollis ante finibus pharetra imperdiet.
-                Maecenas in aliquam purus. Nam et massa a nulla fermentum dapibus sit amet in neque.
-                Ut ipsum ipsum, rhoncus a sodales pellentesque, interdum a elit. Nullam aliquam
-                tellus nibh, eget laoreet dui aliquet non. Vestibulum malesuada ante at diam tempus,
-                ac interdum risus scelerisque. Sed ipsum neque, vulputate porta diam eget, consequat
-                blandit nulla. Integer volutpat velit vitae purus lacinia aliquam. Integer bibendum
-                ipsum vitae magna pulvinar, nec vehicula dolor vulputate. Nulla eu massa id orci
-                placerat finibus vel sit amet eros. Vestibulum quis consequat massa. Sed sagittis
-                sollicitudin massa at commodo. Praesent diam nisi, imperdiet posuere eleifend nec,
-                blandit ac massa.
-              </p>
-              <p>
-                Vestibulum semper pretium ipsum nec congue. Ut ac eros nisi. Donec leo sem, aliquam
-                mollis sapien ultrices, dapibus congue diam. Proin viverra dapibus blandit. Ut
-                mauris tellus, tristique id felis vel, venenatis vestibulum nunc. Nam molestie
-                pulvinar nibh, eget egestas augue. Maecenas tellus arcu, mattis ut ipsum non,
-                sollicitudin convallis nunc. Donec nec neque tristique, aliquet lacus id, laoreet
-                nunc. Cras dapibus nisi nulla, ullamcorper faucibus neque suscipit ac. Donec eget
-                orci venenatis justo lobortis volutpat. Proin vel placerat nisl. Integer arcu nunc,
-                sodales eu fringilla non, aliquam non diam. Cras placerat, massa et faucibus
-                pretium, ante elit tincidunt tellus, tristique ultricies velit quam et massa.
-              </p>
-              <p>
-                In nunc lacus, dapibus vitae lacus sit amet, efficitur iaculis neque. Suspendisse ut
-                tellus quis leo vestibulum tincidunt. Aenean nec enim ac dolor lacinia semper. Ut
-                sed laoreet libero. Nunc elementum sollicitudin accumsan. Nunc eu augue neque. Proin
-                a tortor nibh. Cras eu nisl ornare sapien feugiat pellentesque. Mauris dignissim vel
-                quam eu pellentesque. Integer sit amet posuere quam, eu ullamcorper odio. Nullam a
-                lacus tempus sapien dignissim ullamcorper. In hac habitasse platea dictumst. Proin
-                quis massa aliquam, feugiat tortor sit amet, tincidunt urna. Donec posuere pulvinar
-                lectus, ac semper ipsum vulputate quis.
-              </p>
+              <h2>Purich Pumiwatana</h2><br/>
+              <h3>Experience</h3>
+              <h4>Front End Developer / <strong>TDCX</strong></h4>
+              <span>September 2018 - Present, Kuala Lumpur, Malaysia</span><br/>
+              <span>Google Project - Tag Implementation Specialist (TAG TEAM)</span>
+              <ul>
+                <li>Selected as an instructor for conversion tracking hackathon workshop by Google Thailand</li>
+                <li>Successfully helped sales teams deploying leads with more than 80% implementation rate for further campaigns optimization</li>
+                <li>Received excellent feedback from advertisers with 100% CSAT (customer satisfaction survey)</li>
+              </ul>
+              <h4>Digital Director ​/ <strong>Vathanagul Group co. LTD</strong></h4>
+              <span>May 2016 - August 2018, Bangkok, Thailand</span>
+              <ul>
+                <li>Grew revenue for print magazine company by creating an online magazine website</li>
+                <li>Transformed an offline marketing campaign into an online marketing by using digital media assolutions to their business</li>
+                <li>Increased revenue more than 30% of total company revenue via online platforms</li>
+              </ul>
+              <h4>WebDeveloper /​ <strong>KiteCreations</strong></h4>
+              <span>May 2015 - July 2015, Bangkok, Thailand</span>
+              <ul>
+                <li>Increased client’s web page speed score to 90/100 by eliminating render block in above fold content</li>
+              </ul>
+              <br/>
+              <h3>Education</h3>
+              <h4>King Mongkut's University of Technology Thonburi</h4>
+              <span>Bachelor of Science - BS, Applied Computer Science</span><br/>
+              <span>2013 - 2016, Bangkok, Thailand</span>
             </div>
           </PostFullContent>
         </article>
