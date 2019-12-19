@@ -41,6 +41,15 @@ module.exports = {
             },
           },
         ],
+        plugins: [
+          {
+            resolve: `gatsby-plugin-google-adsense`,
+            options: {
+              googleAdClientId: "ca-pub-1849793877396082",
+              head: false // Optional
+            }
+          }
+        ],
       },
     },
     'gatsby-transformer-json',
@@ -80,14 +89,5 @@ module.exports = {
         siteSpeedSampleRate: 10,
       },
     },
-  ],
-  plugins: [
-    {
-      resolve: `gatsby-plugin-google-adsense`,
-      options: {
-        googleAdClientId: "ca-pub-1849793877396082",
-        head: false // Optional
-      }
-    }
   ],
 };
