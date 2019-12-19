@@ -564,6 +564,16 @@ const PostContent: React.FC<PostContentProps> = ({ htmlAst }) => {
     <PostFullContent className="post-full-content">
       {/* TODO: this will apply the class when rehype-react is published https://github.com/rhysd/rehype-react/pull/11 */}
       <Ast className="post-content" ast={htmlAst} />
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-1849793877396082"
+           data-ad-slot="1823889778"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
     </PostFullContent>
   );
 };
