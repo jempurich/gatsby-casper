@@ -41,15 +41,6 @@ module.exports = {
             },
           },
         ],
-        plugins: [
-          {
-            resolve: `gatsby-plugin-google-adsense`,
-            options: {
-              googleAdClientId: "ca-pub-1849793877396082",
-              head: true // Optional
-            }
-          }
-        ],
       },
     },
     'gatsby-transformer-json',
