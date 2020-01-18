@@ -31,7 +31,7 @@ const About: React.FC = () => (
       <main id="site-main" className="site-main" css={[SiteMain, outer]}>
         <article className="post page" css={[PostFull, NoImage]}>
           <PostFullHeader>
-            <PostFullTitle>About</PostFullTitle>
+            <PostFullTitle>About - Purich Pumiwatana</PostFullTitle>
           </PostFullHeader>
 
           <PostFullContent className="post-full-content">
@@ -40,24 +40,21 @@ const About: React.FC = () => (
               <h3>Experience</h3>
               <h4>Front End Developer / <strong>TDCX</strong></h4>
               <span>September 2018 - Present, Kuala Lumpur, Malaysia</span><br/>
-              <span>Google Project - Tag Implementation Specialist (TAG TEAM)</span>
+              <span>Tag Implementation Specialist at Google</span>
               <ul>
-                <li>Selected as an instructor for conversion tracking hackathon workshop by Google Thailand</li>
-                <li>Successfully helped sales teams deploying leads with more than 80% implementation rate for further campaigns optimization</li>
-                <li>Received excellent feedback from advertisers with 100% CSAT (customer satisfaction survey)</li>
+                <li>Responsible for helping sales teams in the region deploy leads, implement google tags, optimize ads performance, enable integration and troubleshoot issues with more than 80% implementation rate for further ads campaigns optimization</li>
+                <li>Received excellent feedback from advertisers with 90% CSAT(customer satisfaction survey) over 500+ customers by striving to give actionable, encouraging, and helpful feedback to advertisers</li>
+                <li>Delivery implementation to grow advertiser's websites, grow advertiser's business, and grow number of google ads advertisers</li>
               </ul>
               <h4>Digital Director ​/ <strong>Vathanagul Group co. LTD</strong></h4>
               <span>May 2016 - August 2018, Bangkok, Thailand</span>
               <ul>
-                <li>Grew revenue for print magazine company by creating an online magazine website</li>
-                <li>Transformed an offline marketing campaign into an online marketing by using digital media assolutions to their business</li>
-                <li>Increased revenue more than 30% of total company revenue via online platforms</li>
+                <li>Working based on digital innovation and design to fulfil marketing services</li>
+                <li>Created online marketing activities/services to increase activation, sales and usage of the product by developing website and mobile application</li>
+                <li>Grew revenue for print magazine company by creating an online magazine website and online content as solutions to their business</li>
               </ul>
               <h4>WebDeveloper /​ <strong>KiteCreations</strong></h4>
               <span>May 2015 - July 2015, Bangkok, Thailand</span>
-              <ul>
-                <li>Increased client’s web page speed score to 90/100 by eliminating render block in above fold content</li>
-              </ul>
               <br/>
               <h3>Education</h3>
               <h4>King Mongkut's University of Technology Thonburi</h4>
