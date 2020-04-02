@@ -11,7 +11,6 @@ module.exports = {
   },
   plugins: [
     'gatsby-plugin-sitemap',
-    'gatsby-plugin-netlify-cms',
     'gatsby-plugin-sharp',
     {
       resolve: 'gatsby-source-filesystem',
