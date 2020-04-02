@@ -5,15 +5,6 @@
   facebook: ghost
   website: https://ghost.org/
   location: On a plane
-  profile_image: img/alex-knight-326705-unsplash.jpg
-- id: Another Author
-  avatar: avatars/ghost.png
-  bio: This is another test author with a profile background image
-  twitter: TryGhost
-  facebook: ghost
-  website: https://ghost.org/
-  location: On a plane
-  profile_image: img/alex-knight-326705-unsplash.jpg
 - id: jempurich
   avatar: avatars/author.jpg
   bio: Front End Developer & Digital Marketing Specialist
@@ -21,4 +12,4 @@
   facebook: jempurich
   website: https://purich.co/
   location: On a plane
-  profile_image: img/alex-knight-326705-unsplash.jpg
+  profile_image: img/blog-cover.jpg
